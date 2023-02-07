@@ -13,7 +13,16 @@ export default function Home() {
       <h1>to-do-inator</h1>
 
       <div style={{ position: "absolute", top: 10, right: 10 }}>
-        <button type="button" onClick={() => signIn()}>
+        <button
+          type="button"
+          onClick={() => {
+            if (session) {
+              signOut();
+            } else {
+              signIn();
+            }
+          }}
+        >
           {session ? "logout" : "login"}
         </button>
       </div>
@@ -31,7 +40,9 @@ export default function Home() {
       >
         <label htmlFor="todoInput">add to-do:</label>
         <input required type="text" id="todoInput" name="todoInput" />
-        <button type="submit">add</button>
+        <button disabled={!session} type="submit">
+          add
+        </button>
       </form>
 
       <ul>
