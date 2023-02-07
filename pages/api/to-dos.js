@@ -4,18 +4,19 @@ import { getToken } from "next-auth/jwt";
 export default async function handler(request, response) {
   const { method, body } = request;
   const token = await getToken({ req: request });
+  const userId = token.sub;
 
   if (token) {
     if (method === "GET") {
       try {
-        const mongoResponse = await getToDos();
+        const mongoResponse = await getToDos(userId);
         response.status(200).json(mongoResponse);
       } catch (error) {
         response.status(500).json({ error: "Oh no." });
       }
     } else if (method === "POST") {
       try {
-        const mongoResponse = await addToDo(body);
+        const mongoResponse = await addToDo({ ...body, userId });
         return response.status(201).json(mongoResponse);
       } catch (error) {
         console.log(error);
