@@ -6,7 +6,6 @@ export default function Home() {
   const url = "/api/to-dos";
   const { data: todos } = useSWR(url);
   const { data: session } = useSession();
-  console.log(session);
 
   return (
     <div style={{ fontSize: "x-large" }}>
