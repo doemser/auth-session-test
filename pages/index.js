@@ -1,13 +1,23 @@
+import { useSession, signIn, signOut } from "next-auth/react";
 import useSWR from "swr";
 import { fetchToDo } from "@/services/fetch";
 
 export default function Home() {
   const url = "/api/to-dos";
   const { data: todos } = useSWR(url);
+  const { data: session } = useSession();
+  console.log(session);
 
   return (
     <div style={{ fontSize: "x-large" }}>
       <h1>to-do-inator</h1>
+
+      <div style={{ position: "absolute", top: 10, right: 10 }}>
+        <button type="button" onClick={() => signIn()}>
+          {session ? "logout" : "login"}
+        </button>
+      </div>
+
       <form
         onSubmit={(event) => {
           event.preventDefault();
