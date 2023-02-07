@@ -13,3 +13,7 @@ pnpm dev
 ```
 
 1. Checkout to new feature branch - feature/user-authentication
+2. Install next-auth
+3. Make a commit.
+4. Add nextauth API Route
+5. Make a commit.
