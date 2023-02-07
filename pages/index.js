@@ -6,7 +6,7 @@ export default function Home() {
   const url = "/api/to-dos";
   const { data: todos } = useSWR(url);
   const { data: session } = useSession();
-
+  console.log("orevieasd");
   return (
     <div style={{ fontSize: "x-large" }}>
       <h1>to-do-inator</h1>
